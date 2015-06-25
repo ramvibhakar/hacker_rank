@@ -1,17 +1,17 @@
 __author__ = 'ramvibhakar'
-import collections
-import math
+def get_all_substrings(input_string):
+  length = len(input_string)
+  return [''.join(sorted(input_string[i:j+1])) for i in xrange(length) for j in xrange(i,length)]
+
+
 T = input()
 while T > 0:
+    cnt = 0
     string = raw_input()
-    count = collections.Counter(string)
-    pairs = [int(num/2) for num in count.values()]
-    total = sum(pairs)
-    if total == 0:
-        print(0)
-    else:
-        number = 0
-        for i in xrange(0, total+1):
-            number += math.factorial(i)
-        print(number)
+    sub_strings = get_all_substrings(string)
+    for i in xrange(0,len(sub_strings)):
+        count = sub_strings[i:len(sub_strings)].count(sub_strings[i])
+        if count >1:
+            cnt +=1
+    print(cnt)
     T -= 1
